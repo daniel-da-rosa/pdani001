@@ -51,12 +51,14 @@ begin
              estclasse.descricao,
              estsubgrupo.descricao,
              estfamilia.descricao,
-             estitem.descricao
+             estitem.descricao,
+             pcpversao.detalhes
         into v_grupo,
              v_classe,
              v_subgrupo,
              v_familia,
-             v_descricao
+             v_descricao,
+             v_detalhes
         from estitem,
              estsubgrupo,
              estclasse,
@@ -85,20 +87,17 @@ begin
              estclasse.descricao,
              estsubgrupo.descricao,
              estfamilia.descricao,
-             estitem.descricao,
-             pcpversao.detalhes
+             estitem.descricao
         into v_grupo,
              v_classe,
              v_subgrupo,
              v_familia,
-             v_descricao,
-             v_detalhes
+             v_descricao
         from estitem,
              estsubgrupo,
              estclasse,
              estgrupo,
-             estfamilia,
-             pcpversao
+             estfamilia
        where estitem.empresa  = estsubgrupo.empresa
          and estitem.grupo    = estsubgrupo.grupo
          and estitem.subgrupo = estsubgrupo.codigo
@@ -109,13 +108,13 @@ begin
          and estitem.empresa  = estfamilia.empresa
          and estitem.familia  = estfamilia.codigo
          and estitem.empresa  = v_empresa
-         and estitem.empresa   = pcpversao.empresa
-         and estitem.codigo   = pcpversao.produto
          and estitem.codigo   = v_item;
+         
+         dbms_output.put_line(v_detalhes);
 		 
   end if;
   
-  v_retorno := ${colunas};
+  v_retorno := v_retorno := ${colunas};
   --dbms_output.put_line(v_retorno);
   
   :p_4 := v_retorno;
