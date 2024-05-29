@@ -62,7 +62,7 @@ export default function SelectOpcao() {
       <input
         type="text"
         className="mt-4 p-2 border border-gray-300 rounded-lg bg-gray-100 w-1/2"
-        value={sequencia.join(', ')}
+        value={sequencia.join('  ')}
         readOnly
       />
       <button 
