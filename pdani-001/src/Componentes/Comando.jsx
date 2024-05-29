@@ -114,7 +114,7 @@ begin
 		 
   end if;
   
-  v_retorno := v_retorno := ${colunas};
+  v_retorno := ${colunas};
   --dbms_output.put_line(v_retorno);
   
   :p_4 := v_retorno;
