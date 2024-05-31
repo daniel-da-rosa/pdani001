@@ -53,7 +53,7 @@ export default function SelectOpcao() {
         </select>
         <button 
           type="button"
-          className="ml-2 bg-teal-800 text-white p-2 rounded hover:bg-teal-700"
+          className="ml-2 bg-blue-950 text-white p-2 rounded hover:bg-blue-900"
           onClick={adicionarOpcao}
         >
           Adicionar
@@ -67,7 +67,7 @@ export default function SelectOpcao() {
       />
       <button 
         type="button"
-        className="w-1/3 bg-teal-800 text-white p-3 rounded-lg hover:bg-teal-700 mt-4"
+        className="w-1/3 bg-blue-950 text-white p-3 rounded-lg hover:bg-blue-900 mt-4"
         onClick={handleGerarComando}
       >
         Gerar comando

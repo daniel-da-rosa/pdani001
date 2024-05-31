@@ -3,10 +3,10 @@ import React from 'react'
 export default function Header() {
   return (
     <div>
-      <header className="bg-gray-600 
+      <header className="bg-blue-950 
                            font-bold 
                            p-7 
-                           text-gray-100
+                           text-white
                            text-center
                            text-4xl
                            rounded" 

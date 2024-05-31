@@ -11,8 +11,11 @@ function App() {
 
   return (
     <>
+      <div>
+
       <Header />
       <SelectOpcao selecionado={selecionado} setSelecionado={setSelecionado}/>
+      </div>
       
     </>
   );

@@ -34,7 +34,7 @@ export default function TextArea({ comandoSQL }) {
       </pre>
       {comandoGeradoNotNull &&(
         <button
-          className="hover:bg-teal-700 bg-teal-900 text-white font-bold py-2 px-4 rounded mt-4 copy-button"
+          className="hover:bg-blue-800 bg-blue-950 text-white font-bold py-2 px-4 rounded mt-4 copy-button"
         >
           Copiar SQL
         </button>
