@@ -74,40 +74,39 @@ export default function Comando({ sequencia, atributos = [] }) {
 
     if v_versao is not null then
 
-      select 
-        regexp_replace(estgrupo.descricao, '^1 PA - ', ''),
-        estclasse.descricao,
-        estsubgrupo.descricao,
-        estfamilia.descricao,
-        estitem.descricao,
-        pcpversao.detalhes
-      into v_grupo,
-        v_classe,
-        v_subgrupo,
-        v_familia,
-        v_descricao,
-        v_detalhes
-      from estitem,
-        estsubgrupo,
-        estclasse,
-        pcpversao, 
-        estgrupo,
-        estfamilia
-      where estitem.empresa = estsubgrupo.empresa
-        and estitem.grupo   = estsubgrupo.grupo
-        and estitem.subgrupo = estsubgrupo.codigo
-        and estitem.empresa  = estclasse.empresa(+)
-        and estitem.classe_produto = estclasse.codigo(+)
-        and estitem.empresa = pcpversao.empresa
-        and estitem.codigo  = pcpversao.produto
-        and estgrupo.empresa = estitem.empresa
-        and estgrupo.codigo = estitem.grupo
-        and estgrupo.codigo = estsubgrupo.grupo
-        and estitem.empresa = estfamilia.empresa
-        and estitem.familia = estfamilia.codigo
-        and pcpversao.empresa = v_empresa
-        and pcpversao.produto  = v_item
-        and pcpversao.versao = v_versao;
+      select regexp_replace(estgrupo.descricao, '^1 PA - ', ''),
+             estclasse.descricao,
+             estsubgrupo.descricao,
+             estfamilia.descricao,
+             estitem.descricao,
+             pcpversao.detalhes
+        into v_grupo,
+             v_classe,
+             v_subgrupo,
+             v_familia,
+             v_descricao,
+             v_detalhes
+           from estitem,
+             estsubgrupo,
+             estclasse,
+             pcpversao, 
+             estgrupo,
+             estfamilia
+       where estitem.empresa = estsubgrupo.empresa
+         and estitem.grupo   = estsubgrupo.grupo
+         and estitem.subgrupo = estsubgrupo.codigo
+         and estitem.empresa  = estclasse.empresa(+)
+         and estitem.classe_produto = estclasse.codigo(+)
+         and estitem.empresa = pcpversao.empresa
+         and estitem.codigo  = pcpversao.produto
+         and estgrupo.empresa = estitem.empresa
+         and estgrupo.codigo = estitem.grupo
+         and estgrupo.codigo = estsubgrupo.grupo
+         and estitem.empresa = estfamilia.empresa(+)
+         and estitem.familia = estfamilia.codigo(+)
+         and pcpversao.empresa = v_empresa
+         and pcpversao.produto  = v_item
+         and pcpversao.versao = v_versao;
 
     else
 
@@ -133,12 +132,10 @@ export default function Comando({ sequencia, atributos = [] }) {
         and estitem.classe_produto = estclasse.codigo(+)   
         and estgrupo.empresa = estitem.empresa
         and estgrupo.codigo  = estitem.grupo       
-        and estitem.empresa  = estfamilia.empresa
-        and estitem.familia  = estfamilia.codigo
+        and estitem.empresa  = estfamilia.empresa(+)
+        and estitem.familia  = estfamilia.codigo(+)
         and estitem.empresa  = v_empresa
         and estitem.codigo   = v_item;
-
-      dbms_output.put_line(v_detalhes);
 
     end if;
 
