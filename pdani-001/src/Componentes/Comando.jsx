@@ -24,6 +24,8 @@ export default function Comando({ sequencia, atributos = [] }) {
           return "v_descricao||' '||";
         case 'Versão':
           return "v_detalhes||' '||";
+        case 'Referência':
+          return "v_referencia||' '||";
         default:
           return '';
       }
@@ -69,6 +71,7 @@ export default function Comando({ sequencia, atributos = [] }) {
   v_classe    varchar2(200);
   v_familia   varchar2(200);
   v_detalhes  varchar2(200);
+  v_referencia varcchar2(200);
 
   begin
 
@@ -79,13 +82,15 @@ export default function Comando({ sequencia, atributos = [] }) {
              estsubgrupo.descricao,
              estfamilia.descricao,
              estitem.descricao,
-             pcpversao.detalhes
+             pcpversao.detalhes,
+             estitem.referencia
         into v_grupo,
              v_classe,
              v_subgrupo,
              v_familia,
              v_descricao,
-             v_detalhes
+             v_detalhes,
+             v_referencia
            from estitem,
              estsubgrupo,
              estclasse,
@@ -111,31 +116,33 @@ export default function Comando({ sequencia, atributos = [] }) {
     else
 
       select regexp_replace(estgrupo.descricao, '^1 PA - ', ''),
-        estclasse.descricao,
-        estsubgrupo.descricao,
-        estfamilia.descricao,
-        estitem.descricao
-      into v_grupo,
-        v_classe,
-        v_subgrupo,
-        v_familia,
-        v_descricao
-      from estitem,
-        estsubgrupo,
-        estclasse,
-        estgrupo,
-        estfamilia
-      where estitem.empresa  = estsubgrupo.empresa
-        and estitem.grupo    = estsubgrupo.grupo
-        and estitem.subgrupo = estsubgrupo.codigo
-        and estitem.empresa  = estclasse.empresa(+)
-        and estitem.classe_produto = estclasse.codigo(+)   
-        and estgrupo.empresa = estitem.empresa
-        and estgrupo.codigo  = estitem.grupo       
-        and estitem.empresa  = estfamilia.empresa(+)
-        and estitem.familia  = estfamilia.codigo(+)
-        and estitem.empresa  = v_empresa
-        and estitem.codigo   = v_item;
+             estclasse.descricao,
+             estsubgrupo.descricao,
+             estfamilia.descricao,
+             estitem.descricao,
+             estitem.referencia
+        into v_grupo,
+             v_classe,
+             v_subgrupo,
+             v_familia,
+             v_descricao
+             v_referencia
+        from estitem,
+             estsubgrupo,
+             estclasse,
+             estgrupo,
+             estfamilia
+       where estitem.empresa  = estsubgrupo.empresa
+         and estitem.grupo    = estsubgrupo.grupo
+         and estitem.subgrupo = estsubgrupo.codigo
+         and estitem.empresa  = estclasse.empresa(+)
+         and estitem.classe_produto = estclasse.codigo(+)   
+         and estgrupo.empresa = estitem.empresa
+         and estgrupo.codigo  = estitem.grupo       
+         and estitem.empresa  = estfamilia.empresa(+)
+         and estitem.familia  = estfamilia.codigo(+)
+         and estitem.empresa  = v_empresa
+         and estitem.codigo   = v_item;
 
     end if;
 

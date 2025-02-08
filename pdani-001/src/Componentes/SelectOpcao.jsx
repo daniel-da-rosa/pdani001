@@ -6,7 +6,7 @@ import Erro from './Erro';
 import BuscaValorFicha from './BuscaValorFicha';
 
 export default function SelectOpcao() {
-  const opcoes = ['Grupo', 'SubGrupo', 'Classe', 'Familia', 'Descrição', 'Versão'];
+  const opcoes = ['Grupo', 'SubGrupo', 'Classe', 'Familia', 'Descrição', 'Versão','Referência'];
   const [selecionado, setSelecionado] = useState('');
   const [sequencia, setSequencia] = useState([]);
   const [comandoSql, setComandoSQL] = useState('');
