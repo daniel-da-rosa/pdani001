@@ -71,7 +71,7 @@ export default function Comando({ sequencia, atributos = [] }) {
   v_classe    varchar2(200);
   v_familia   varchar2(200);
   v_detalhes  varchar2(200);
-  v_referencia varcchar2(200);
+  v_referencia varchar2(200);
 
   begin
 
@@ -125,7 +125,7 @@ export default function Comando({ sequencia, atributos = [] }) {
              v_classe,
              v_subgrupo,
              v_familia,
-             v_descricao
+             v_descricao,
              v_referencia
         from estitem,
              estsubgrupo,
